@@ -1,0 +1,399 @@
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/********************************/
+/**** VARIABLES AND HELPERS ****/
+
+:root {
+    --clr-primary-orange: hsl(26, 100%, 55%);
+    --clr-primary-pale-orange: hsl(25, 100%, 94%);
+    --clr-neutral-dark-blue: hsl(220, 13%, 13%);
+    --clr-neutral-dark-gray-blue: hsl(219, 9%, 45%);
+    --clr-neutral-gray-blue: hsl(220, 14%, 75%);
+    --clr-neutral-light-gray-blue: hsl(223, 64%, 98%);
+    --clr-white: hsl(0, 0%, 100%);
+    --clr-black: hsl(0, 0%, 0%);
+
+    --fs-paragraph: 16px;
+
+    --ff-primary: 'Kumbh Sans', sans-serif;
+
+    --fw-regular: 400;
+    --fw-bold: 700;
+
+    --inline-padding-mobile: 20px;
+
+    --desktop-width: 1000px;
+}
+
+body {
+    font-family: var(--ff-primary);
+}
+
+p {
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-paragraph);
+}
+
+
+/****************/
+/**** HEADER ****/
+
+.header {
+  height: 70px;
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--inline-padding-mobile);
+  height: inherit;
+}
+
+.header__left {
+  display: flex;
+  gap: 20px;
+  height: 60%;
+  
+}
+
+.header__menu {
+  
+}
+
+.header__logo {
+  
+}
+
+.header__right {
+  display: flex;
+  height: 75%;
+  gap: 20px;
+  flex-basis: 1.2;
+}
+
+.header__cart {
+  
+}
+
+.header__avatar {
+
+}
+
+/*************/
+/**** NAV-MOBILE ****/
+
+.nav-mobile {
+  display: none;
+}
+
+.nav-mobile__list {
+
+}
+
+.nav-mobile__list-item {
+
+}
+
+/**********************/
+/**** MAIN CONTENT ****/
+
+.product-container {
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 750px) {
+  .product-container {
+    flex-direction: row;
+    column-gap: 100px;
+    padding-inline: 100px;
+    height: min-content;
+  }
+}
+
+.gallery {
+  position: relative;
+  height: 40vh;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 750px) {
+  .gallery {
+    height: auto;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  .gallery img {
+    border-radius: 10px;
+    width: auto;
+    position: static;
+  }
+}
+
+.gallery::before,
+.gallery::after {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: var(--clr-white);
+  border-radius: 50%;
+  cursor: pointer;
+  text-align: center;
+  padding-top: 5px;
+}
+
+
+.gallery::before {
+  content: url('images/icon-previous.svg');
+  left: 20px;
+}
+
+.gallery::after {
+  content: url('images/icon-next.svg');
+  right: 20px;
+}
+
+
+@media only screen and (min-width: 750px) {
+  .gallery::before,
+  .gallery::after {
+    display: none;
+  }
+}
+
+.gallery__img {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+
+.gallery__thumbnails {
+  display: none;
+}
+
+@media only screen and (min-width: 750px) {
+  .gallery__thumbnails {
+    display: flex;
+    column-gap: 20px;
+  }
+}
+
+.gallery__thumbnail {
+  position: relative;
+}
+
+.gallery__thumbnail:has(.img-radio:checked) {
+  opacity: .4;
+  outline: solid 3px var(--clr-primary-orange);
+  border-radius: 10px;
+}
+
+.gallery__thumbnail-img {
+  min-width: 0;
+}
+
+.img-radio {
+  position: absolute;
+  height: inherit;
+  width: auto;
+  top: 50%;
+  left: 50%;
+  appearance: none;
+  z-index: -1;
+}
+
+
+
+.product {
+  padding-inline: var(--inline-padding-mobile);
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.product__company-name {
+  color: var(--clr-primary-orange);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+
+}
+
+.product__title {
+  line-height: 1;
+}
+
+.product__desc {
+  color: var(--clr-neutral-dark-gray-blue);
+}
+
+.price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media only screen and (min-width: 1000px) {
+  .price {
+    flex-wrap: wrap;
+  }
+}
+
+.price * {
+  font-weight: var(--fw-bold);
+}
+
+.price__left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.price__total-price {
+  font-size: 24px;
+}
+
+.price__discount {
+  padding: 2px 8px;
+  border-radius: 5px;
+  color: var(--clr-primary-orange);
+  background-color: var(--clr-primary-pale-orange);
+}
+
+.price__base-price {
+  color: var(--clr-neutral-gray-blue);
+  text-decoration: line-through;
+}
+
+@media only screen and (min-width: 750px) {
+  .price__base-price {
+    flex-basis: 100%;
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+@media only screen and (min-width: 750px) {
+  .buttons {
+    flex-direction: row;
+    column-gap: 20px;
+  }
+}
+
+.buttons > * {
+  padding: 15px 0;
+  width: 100%;
+  text-align: center;
+  border-radius: 10px;
+  border: none;
+}
+
+.product-count {
+  padding: 15px 0;
+  background-color: var(--clr-neutral-light-gray-blue);
+}
+
+
+
+.cart-button {
+  background-color: var(--clr-primary-orange);
+  color: var(--clr-white);
+  font-weight: var(--fw-bold);
+  cursor: pointer;
+}
+
+.cart-button__cart {
+  margin-right: 20px;
+  
+}
+
+.cart-button__cart * {
+  fill: var(--clr-white);
+  height: 16;
+  width: 16;
+}
